@@ -16,7 +16,7 @@ The application provides:
 ---
 
 ## Project Structure
-
+```bash
 root/
 │
 ├── backend/ # Backend server folder (Node.js + Express)
@@ -37,6 +37,7 @@ root/
 │ └── environments/ # Environment configs
 ├── angular.json # Angular CLI config
 └── package.json # Frontend dependencies and scripts
+```
 
 
 ---
@@ -63,13 +64,15 @@ cd your-repo-name
 `npm install`
 `node server.js`
 The backend server will start (default on port 3000). Ensure MongoDB is running or your connection string is configured properly in the backend config.
-
+```
 3. Setup and start the frontend Angular app
 Open a new terminal window/tab, then:
 
+```bash
 `cd registration-app`
 `npm install`
 `ng serve`
+```
 The Angular app will compile and run on http://localhost:4200/ by default.
 
 
