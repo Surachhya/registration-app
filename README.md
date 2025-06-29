@@ -19,24 +19,21 @@ The application provides:
 ```bash
 root/
 │
-├── backend/ # Backend server folder (Node.js + Express)
-│ ├── models/ # Mongoose data models (e.g. Registration schema)
-│ ├── routes/ # Express routes / API endpoints
-│ ├── controllers/ # Request handlers
-│ ├── config/ # Configuration files (e.g. DB connection, nodemailer)
-│ ├── server.js # Main server entry point
-│ └── package.json # Backend dependencies and scripts
+├── backend/                  # Backend server folder (Node.js + Express)
+│   ├── models/               # Mongoose data models (e.g. Registration schema)
+│   ├── routes/               # Express routes / API endpoints
+│   ├── server.js             # Main server entry point
+│   └── package.json          # Backend dependencies and scripts
 │
-└── registration-app/ # Angular frontend app folder
-├── src/
-│ ├── app/
-│ │ ├── components/ # Angular components (e.g. registration form, details)
-│ │ ├── services/ # Angular services (e.g. API service)
-│ │ └── app.module.ts # Main module
-│ ├── assets/ # Static assets
-│ └── environments/ # Environment configs
-├── angular.json # Angular CLI config
-└── package.json # Frontend dependencies and scripts
+└── registration-app/         # Angular frontend app folder
+    ├── src/
+    │   ├── app/
+    │   │   ├── components/   # Angular components (e.g. registration form, details)
+    │   │   ├── services/     # Angular services (e.g. API service)
+    │   ├── assets/           # Static assets
+    ├── angular.json          # Angular CLI config
+    └── package.json          # Frontend dependencies and scripts
+
 ```
 
 
@@ -63,8 +60,9 @@ cd your-repo-name
 `cd backend`
 `npm install`
 `node server.js`
-The backend server will start (default on port 3000). Ensure MongoDB is running or your connection string is configured properly in the backend config.
 ```
+The backend server will start (default on port 3000). Ensure MongoDB is running or your connection string is configured properly in the backend config.
+
 3. Setup and start the frontend Angular app
 Open a new terminal window/tab, then:
 
@@ -88,4 +86,8 @@ Troubleshooting
 - MongoDB connection issues: Verify your connection string and MongoDB service status.
 - Angular build errors: Run npm install to ensure dependencies are installed and use ng serve --open to auto-open browser.
 
-Developed by Surachhya Adhikari
+-
+<hr style="width: 50%; margin: 2rem auto; border-color: #ccc;" />
+<p style="text-align: center; font-weight: 500; color: #555;">
+  Developed by Surachhya Adhikari
+</p>
