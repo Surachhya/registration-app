@@ -24,7 +24,7 @@ export class RequestsListComponent implements OnInit {
     this.registrationService.getRegistrations().subscribe(data => {
       this.requests = data.map(item => ({
         ...item,
-        isCompleted: (item as any).IsCompleted ?? item.isCompleted // handle both
+        isCompleted: (item as any).IsCompleted ?? item.isCompleted 
       }));
     });
   }
@@ -33,7 +33,7 @@ export class RequestsListComponent implements OnInit {
 
     this.registrationService.markComplete(id).subscribe({
       next: () => {
-        // Find the request by id and update isCompleted locally
+
         const request = this.requests.find(r => r._id === id);
         if (request) {
           request.isCompleted = true;
@@ -49,7 +49,6 @@ export class RequestsListComponent implements OnInit {
     if (!id) return;
     this.registrationService.deleteRegistration(id).subscribe({
       next: () => {
-        // Remove the request from the local array
         this.requests = this.requests.filter(r => r._id !== id);
       },
       error: err => {

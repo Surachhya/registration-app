@@ -41,9 +41,7 @@ root/
 
 ## Prerequisites
 
-Make sure you have the following installed:
-
-- [Node.js (v16+ recommended)](https://nodejs.org/)
+- [Node.js (v19+ (That is what I used ))](https://nodejs.org/)
 - [Angular CLI](https://angular.io/cli) (for frontend)
 - [MongoDB](https://www.mongodb.com/) (local or cloud instance)
 
@@ -86,8 +84,7 @@ Troubleshooting
 - MongoDB connection issues: Verify your connection string and MongoDB service status.
 - Angular build errors: Run npm install to ensure dependencies are installed and use ng serve --open to auto-open browser.
 
--
-<hr style="width: 50%; margin: 2rem auto; border-color: #ccc;" />
-<p style="text-align: center; font-weight: 500; color: #555;">
+---
+
   Developed by Surachhya Adhikari
-</p>
+

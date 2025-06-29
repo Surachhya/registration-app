@@ -14,22 +14,24 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = (data) => {
     const mailOptions = {
-        from: '"Workshop Team" <workshopteamreply@gmail.com>',  // sender address
-        to: data.emailAddress,                            // recipient from form
+        from: '"Workshop Team" <workshopteamreply@gmail.com>', 
+        to: data.emailAddress, 
         subject: 'Workshop Request Confirmation',
         text: `Hello ${data.firstName},
-
-                Thank you for your interest in our workshops! A member of our team will reach out soon.
-
-                Best regards,
-                Workshop Team`
+Thank you for your interest in our workshops at Towson University! We appreciate you taking the time to reach out.
+A member of our team will review your request and get back to you shortly with more information.
+In the meantime, if you have any urgent questions or need immediate assistance,
+please feel free to reply to this email.
+We look forward to helping you explore the opportunities available and supporting your educational journey.
+Best regards,
+The Towson University Workshop Team
+`
             };
 
-    // Send email
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Email send error:', error);
-            // You can decide if you want to fail the request or just log the email error
+
         } else {
             console.log('Email sent: ' + info.response);
         }
@@ -41,7 +43,6 @@ router.post('/', async (req, res) => {
         const newRegistration = new Registration(req.body);
         await newRegistration.save();
 
-        //send confirmation email
         sendEmail(newRegistration);
 
         res.status(201).json({ message: 'Registration saved!' });
@@ -50,10 +51,9 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: 'Error saving registration' });
     }
 });
-// GET all registrations (for listing)
+
 router.get('/', async (req, res) => {
     try {
-        // Select only fields needed: firstName, lastName, phone, emailAddress, createdAt, IsCompleted
         const registrations = await Registration.find({}, 'firstName lastName phone emailAddress createdAt IsCompleted').sort({ createdAt: -1 });
         res.json(registrations);
     } catch (err) {
@@ -62,7 +62,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// PATCH to update completion status
 router.patch('/:id/complete', async (req, res) => {
     try {
         const registration = await Registration.findById(req.params.id);
@@ -78,7 +77,6 @@ router.patch('/:id/complete', async (req, res) => {
     }
 });
 
-// DELETE a registration
 router.delete('/:id', async (req, res) => {
     try {
         const registration = await Registration.findByIdAndDelete(req.params.id);
@@ -91,7 +89,6 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// GET a single registration by ID
 router.get('/:id', async (req, res) => {
     try {
         const registration = await Registration.findById(req.params.id);
@@ -103,14 +100,12 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: 'Error fetching registration' });
     }
 });
-// PUT to update a registration
 router.put('/:id', async (req, res) => {
     try {
         const registration = await Registration.findByIdAndUpdate(req
 .params.id, req.body, { new: true });
         if (!registration) return res.status(404).json({ message: 'Request not found' });
 
-        //send confirmation email
         sendEmail(registration);
 
         res.json({ message: 'Registration updated', registration });
