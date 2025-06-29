@@ -11,7 +11,7 @@ const registrationSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  isCompleted: {
+  IsCompleted: {
     type: Boolean,
     default: false
   }

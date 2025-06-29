@@ -12,12 +12,8 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-router.post('/', async (req, res) => {
-    try {
-        const newRegistration = new Registration(req.body);
-        await newRegistration.save();
-
-        // Send confirmation email
+const sendEmail = (data) => {
+    // Send confirmation email
         // Prepare email message
         const mailOptions = {
             from: '"Workshop Team" <your_email@gmail.com>',  // sender address
@@ -41,6 +37,15 @@ router.post('/', async (req, res) => {
             }
         });
 
+}
+
+router.post('/', async (req, res) => {
+    try {
+        const newRegistration = new Registration(req.body);
+        await newRegistration.save();
+
+        //send confirmation email
+        sendEmail(newRegistration);
 
         res.status(201).json({ message: 'Registration saved!' });
     } catch (err) {
@@ -75,6 +80,7 @@ router.patch('/:id/complete', async (req, res) => {
         res.status(500).json({ message: 'Error updating registration' });
     }
 });
+
 // DELETE a registration
 router.delete('/:id', async (req, res) => {
     try {
@@ -85,6 +91,35 @@ router.delete('/:id', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Error deleting registration' });
+    }
+});
+
+// GET a single registration by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const registration = await Registration.findById(req.params.id);
+        if (!registration) return res.status(404).json({ message: 'Request not found' });
+
+        res.json(registration);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error fetching registration' });
+    }
+});
+// PUT to update a registration
+router.put('/:id', async (req, res) => {
+    try {
+        const registration = await Registration.findByIdAndUpdate(req
+.params.id, req.body, { new: true });
+        if (!registration) return res.status(404).json({ message: 'Request not found' });
+
+        //send confirmation email
+        sendEmail(registration);
+
+        res.json({ message: 'Registration updated', registration });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error updating registration' });
     }
 });
 

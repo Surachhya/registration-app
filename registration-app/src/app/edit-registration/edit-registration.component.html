@@ -1,0 +1,10 @@
+<h2>Edit Registration</h2>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <input formControlName="firstName" placeholder="First Name">
+  <input formControlName="lastName" placeholder="Last Name">
+  <input formControlName="emailAddress" placeholder="Email">
+  <input formControlName="phone" placeholder="Phone">
+  <input formControlName="campus" placeholder="Campus">
+  <input formControlName="workshop" placeholder="Workshop">
+  <button type="submit">Update</button>
+</form>

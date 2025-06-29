@@ -1,0 +1,40 @@
+<table class="table table-striped table-hover table-bordered align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Submitted At</th>
+      <th scope="col">Completed</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let req of requests">
+      <td>{{ req.firstName }} {{ req.lastName }}</td>
+      <td>{{ req.phone }}</td>
+      <td>{{ req.emailAddress }}</td>
+      <td>{{ req.createdAt | date: 'short' }}</td>
+      <td>
+        <span class="badge" [ngClass]="req.isCompleted ? 'bg-success' : 'bg-warning text-dark'">
+          {{ req.isCompleted ? 'Yes' : 'No' }}
+        </span>
+      </td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Actions">
+          <button class="btn btn-sm btn-primary me-2" [disabled]="req.isCompleted" (click)="markComplete(req._id!)">
+            Complete
+          </button>
+          <button class="btn btn-sm btn-secondary" (click)="deleteRegistration(req._id!)">
+            <i class="bi bi-trash"><span class="text-danger">X</span></i>
+          </button>
+          <a 
+             class="btn btn-primary btn-sm"
+             [routerLink] ="['/edit', req._id]">
+             Edit
+          </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

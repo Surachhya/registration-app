@@ -8,7 +8,6 @@
 
 # Node
 /node_modules
-/registration-app/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -31,8 +30,6 @@ yarn-error.log
 
 # Miscellaneous
 /.angular/cache
-/registration-app/.angular/cache
-/registration-app/.sass-cache
 .sass-cache/
 /connect.lock
 /coverage
