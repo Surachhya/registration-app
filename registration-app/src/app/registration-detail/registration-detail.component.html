@@ -1,0 +1,51 @@
+<div class="container mt-5" *ngIf="!loading && registration; else loadingTpl" style="max-width: 500px;">
+  <h2 class="text-center mb-4">Registration Details</h2>
+
+  <ul class="list-group mb-4">
+    <li class="list-group-item"><strong>Name:</strong> {{ registration.firstName }} {{ registration.lastName }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ registration.emailAddress }}</li>
+    <li class="list-group-item"><strong>Phone:</strong> {{ registration.phone }}</li>
+    <li class="list-group-item"><strong>Campus:</strong> {{ registration.campus }}</li>
+    <li class="list-group-item"><strong>Workshop:</strong> {{ registration.workshop }}</li>
+    <li class="list-group-item"><strong>Completed:</strong> {{ registration.isCompleted ? 'Yes' : 'No' }}</li>
+    <li class="list-group-item"><strong>Submitted At:</strong> {{ registration.createdAt | date: 'short' }}</li>
+  </ul>
+
+  <div class="d-flex justify-content-center gap-2">
+    <a 
+      class="btn btn-warning btn-sm" 
+      [routerLink]="['/requests']" 
+      title="Back to registrations lists">
+      <i class="bi bi-arrow-return-left"></i> Back to Registrations
+    </a>
+
+    <button 
+      class="btn btn-success btn-sm"
+      [disabled]="registration.isCompleted" 
+      (click)="markComplete(registration._id!)"
+      title="Mark this registration as complete">
+      <i class="bi bi-check-circle-fill me-1"></i> Complete
+    </button>
+
+    <a 
+      class="btn btn-warning btn-sm" 
+      [routerLink]="['/edit', registration._id]" 
+      title="Edit this registration">
+      <i class="bi bi-pencil-fill me-1"></i> Edit
+    </a>
+
+    <button 
+      class="btn btn-danger btn-sm" 
+      (click)="deleteRegistration(registration._id!)" 
+      title="Delete this registration">
+      <i class="bi bi-trash-fill me-1"></i> Delete
+    </button>
+  </div>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="text-center mt-5">
+    <div class="spinner-border" role="status"></div>
+    <p class="mt-3">Loading registration...</p>
+  </div>
+</ng-template>
