@@ -15,7 +15,7 @@
 
   <!-- Email -->
   <div class="mb-3">
-    <input type="email" class="form-control" placeholder="Email" name="emailAddress" required email [(ngModel)]="model.emailAddress" #emailAddress="ngModel">
+    <input type="email" class="form-control" placeholder="Email" name="emailAddress" required email pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$" [(ngModel)]="model.emailAddress" #emailAddress="ngModel">
     <small class="text-danger" *ngIf="emailAddress.invalid && (emailAddress.touched || frm.submitted)">
       A valid email is required.
     </small>
