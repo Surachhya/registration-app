@@ -1,58 +1,53 @@
 <form #frm="ngForm" (ngSubmit)="onSubmit(frm)" novalidate class="p-4 shadow rounded bg-light" style="max-width: 500px; margin: auto;">
   <h3 class="text-center mb-4"> {{ model._id ? 'UPDATE INFO' : 'REQUEST INFO' }} </h3>
 
-  <!-- First Name -->
+
   <div class="mb-3">
     <input type="text" class="form-control" placeholder="First Name" name="firstName" required [(ngModel)]="model.firstName" #firstName="ngModel">
     <small class="text-danger" *ngIf="firstName.invalid && (firstName.touched || frm.submitted)">First Name is required.</small>
   </div>
 
-  <!-- Last Name -->
   <div class="mb-3">
     <input type="text" class="form-control" placeholder="Last Name" name="lastName" required [(ngModel)]="model.lastName" #lastName="ngModel">
     <small class="text-danger" *ngIf="lastName.invalid && (lastName.touched || frm.submitted)">Last Name is required.</small>
   </div>
 
-  <!-- Email -->
   <div class="mb-3">
     <input type="email" class="form-control" placeholder="Email" name="emailAddress" required email pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$" [(ngModel)]="model.emailAddress" #emailAddress="ngModel">
     <small class="text-danger" *ngIf="emailAddress.invalid && (emailAddress.touched || frm.submitted)">
-      A valid email is required.
+      This does not appear to be a valid email address.
     </small>
   </div>
 
-  <!-- Phone -->
   <div class="mb-3">
-    <input type="text" class="form-control" placeholder="Phone" name="phone" required [(ngModel)]="model.phone" #phone="ngModel">
+    <input type="text" class="form-control" placeholder="###-###-####" name="phone" required [(ngModel)]="model.phone" #phone="ngModel">
     <small class="text-danger" *ngIf="phone.invalid && (phone.touched || frm.submitted)">Phone is required.</small>
   </div>
 
-  <!-- Campus Dropdown -->
   <div class="mb-3">
     <label for="campus" class="form-label">Which campus are you interested in? <span class="text-danger">*</span></label>
     <select class="form-select" name="campus" required [(ngModel)]="model.campus" #campus="ngModel">
       <option value="" disabled selected>Please select...</option>
-      <option value="Towson - Main Campus">Main Campus</option>
-      <option value="Baltimore - Downtown Campus">Downtown Campus</option>
-      <option value="Online Campus">Online Campus</option>
+      <option value="Towson - Towson Campus">Towson Campus</option>
+      <option value="Baltimore - Baltimore Campus">Baltimore Campus</option>
+      <option value="New York - New York Campus">New York Campus</option>
+      <option value="Timonium - Baltimore Campus">Timonium Campus</option>
+      <option value="Online - Global Campus">Online Campus</option>
     </select>
     <small class="text-danger" *ngIf="campus.invalid && (campus.touched || frm.submitted)">Please select a campus.</small>
   </div>
 
-  <!-- Workshop Free Text -->
   <div class="mb-3">
     <label for="workshop" class="form-label">Which workshop would you like to learn more about?</label>
     <input type="text" class="form-control" placeholder="Which workshop would you like to learn more about?" name="workshop" [(ngModel)]="model.workshop">
   </div>
 
-  <!-- Submit Button -->
   <div class="text-center">
     <button type="submit" class="btn btn-warning text-white">
       {{ model._id ? 'Update Request' : 'Submit Request' }}
     </button>
   </div>
 
-  <!-- Footer Text -->
   <p class="mt-3 text-center text-muted" style="font-size: 0.8rem;">
     By submitting your information below, you agree to our 
     <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
