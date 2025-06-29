@@ -53,9 +53,9 @@ export class RegistrationDetailComponent implements OnInit {
     if (!id) return;
     this.registrationService.deleteRegistration(id).subscribe({
       next: () => {
-        // navigate back to the requests list
-        this.registration = null; // Clear the registration detail
-        window.history.back(); // Go back to the previous page        
+
+        this.registration = null; 
+        window.history.back();      
       },
       error: err => {
         console.error('Failed to delete registration', err);

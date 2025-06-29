@@ -19,7 +19,8 @@ export interface Registration {
 })
 export class RegistrationService {
 
-  private apiUrl = 'http://localhost:3000/api/request-info';
+  //private apiUrl = 'http://localhost:3000/api/request-info';
+  private apiUrl = 'https://registration-app-osrf.onrender.com/api/request-info';
 
   constructor(private http: HttpClient) { }
 
